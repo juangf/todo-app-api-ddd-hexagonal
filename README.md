@@ -13,3 +13,6 @@ To-do app API using Domain-Driven Design (DDD). Work in progress!
 
 ### Project access
 http://localhost:8001
+
+### Mongo Express access
+http://localhost:8081
