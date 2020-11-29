@@ -17,7 +17,9 @@ class TaskId {
 
     private function validate(string $id): void
     {
-
+        if (mb_strlen(trim($id)) === 0) {
+            throw new InvalidIdException('Invalid task ID.');
+        }
     }
 
     public function value(): string
