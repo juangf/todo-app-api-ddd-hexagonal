@@ -18,14 +18,14 @@ final class MongoDbTaskRepository implements TaskRepository
         $this->connUrl = $connUrl;
     }
 
-    private function getClient(): ?Client
+    private function getClient(): Client
     {
         $client = new Client($this->connUrl);
         try {
             $dbs = $client->listDatabases();
         }
         catch (RuntimeException $e) {
-            return null;
+            throw new RuntimeException('Please check your MongoDB connection host and credentials.');
         }
         return $client;
     }
