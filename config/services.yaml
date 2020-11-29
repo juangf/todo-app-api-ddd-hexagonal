@@ -31,5 +31,7 @@ services:
     # please note that last definitions always *replace* previous ones
     App\Api\Task\Domain\TaskRepository:
         class: 'App\Api\Task\Infrastructure\Persistence\MongoDbTaskRepository'
-        arguments:
-            - databaseUrl: '%env(resolve:DATABASE_URL)%'
+        arguments: ['%env(resolve:DATABASE_URL)%']
+
+    App\Api\Task\Application\SearchAllTasks:
+        arguments: ['@App\Api\Task\Domain\TaskRepository']

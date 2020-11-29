@@ -13,9 +13,9 @@ final class MongoDbTaskRepository implements TaskRepository
 {
     private $connUrl;
 
-    function __construct(array $arguments)
+    function __construct(string $connUrl)
     {
-        $this->connUrl = $arguments['databaseUrl'];
+        $this->connUrl = $connUrl;
     }
 
     private function getClient(): ?Client
