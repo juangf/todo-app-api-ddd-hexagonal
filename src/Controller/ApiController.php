@@ -12,9 +12,9 @@ use App\Api\Task\Application\SearchAllTasks;
 
 class ApiController extends AbstractController
 {
-    public function index(SearchAllTasks $searcher, Request $request): JsonResponse
+    public function index(SearchAllTasks $searchAllTasks, Request $request): JsonResponse
     {
-        $tasks = $searcher();
+        $tasks = $searchAllTasks();
 
         $result = [];
         foreach ($tasks as $t) {
