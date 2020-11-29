@@ -22,8 +22,7 @@ class TaskName {
         }
     }
 
-
-    public function __toString(): string
+    public function value(): string
     {
         return $this->name;
     }
