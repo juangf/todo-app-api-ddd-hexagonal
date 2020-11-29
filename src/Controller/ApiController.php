@@ -13,16 +13,9 @@ use App\Api\Task\Application\SearchAllTasks;
 
 class ApiController extends AbstractController
 {
-    private $taskRepository;
-
-    function __construct(TaskRepository $taskRepository)
+    public function index(TaskRepository $taskRepository, Request $request): JsonResponse
     {
-        $this->taskRepository = $taskRepository;
-    }
-
-    public function index(Request $request): JsonResponse
-    {
-        $searcher = new SearchAllTasks($this->taskRepository);
+        $searcher = new SearchAllTasks($taskRepository);
 
         $tasks = $searcher();
 
