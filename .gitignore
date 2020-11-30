@@ -1,6 +1,5 @@
 
 ###> symfony/framework-bundle ###
-/.vscode
 /.env.local
 /.env.local.php
 /.env.*.local
@@ -9,3 +8,4 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+/.vscode
