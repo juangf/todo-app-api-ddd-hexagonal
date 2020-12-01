@@ -10,9 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 use App\Api\Task\Application\SearchAllTasks;
 
-class ApiController extends AbstractController
+class TaskController extends AbstractController
 {
-    public function index(SearchAllTasks $searchAllTasks, Request $request): JsonResponse
+    public function getAll(SearchAllTasks $searchAllTasks, Request $request): JsonResponse
     {
         $tasks = $searchAllTasks();
 
