@@ -38,11 +38,9 @@ final class MongoDbTaskRepository implements TaskRepository
         $collection = $client->todo->task;
         $tasks = $collection->find()->toArray();
 
-        $result = [];
-        foreach ($tasks as $t) {
-            $result[] = Task::createFromPrimitives((string)$t->_id, $t->name);
-        }
-        return $result;
+        return array_map(function($t) {
+            return Task::createFromPrimitives((string)$t->_id, $t->name);
+        }, $tasks);
     }
 
     public function save(Task $task): void
