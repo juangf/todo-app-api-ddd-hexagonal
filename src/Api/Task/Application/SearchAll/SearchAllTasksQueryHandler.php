@@ -20,6 +20,6 @@ final class SearchAllTasksQueryHandler
 
     public function __invoke(SearchAllTasksQuery $query): TasksResponse
     {
-        return ($this->searcher)();
+        return $this->searcher->search();
     }
 }

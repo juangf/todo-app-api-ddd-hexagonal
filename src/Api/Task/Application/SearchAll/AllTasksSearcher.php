@@ -28,7 +28,7 @@ final class AllTasksSearcher
         };
     }
 
-    public function __invoke(): TasksResponse
+    public function search(): TasksResponse
     {
         return new TasksResponse(array_map($this->toTaskResponse(), $this->repository->searchAll()));
     }

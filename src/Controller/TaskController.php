@@ -13,7 +13,7 @@ use App\Api\Task\Application\SearchAll\SearchAllTasksQueryHandler;
 
 class TaskController extends AbstractController
 {
-    public function getAll(SearchAllTasksQueryHandler $handler, Request $request): JsonResponse
+    public function searchAll(SearchAllTasksQueryHandler $handler, Request $request): JsonResponse
     {
         $response = $handler(new SearchAllTasksQuery());
 
