@@ -33,5 +33,8 @@ services:
         class: 'App\Api\Task\Infrastructure\Persistence\MongoDbTaskRepository'
         arguments: ['%env(resolve:DATABASE_URL)%']
 
-    App\Api\Task\Application\SearchAllTasks:
+    App\Api\Task\Application\SearchAll\AllTasksSearcher:
         arguments: ['@App\Api\Task\Domain\TaskRepository']
+
+    App\Api\Task\Application\SearchAll\SearchAllTasksQueryHandler:
+        arguments: ['@App\Api\Task\Application\SearchAll\AllTasksSearcher']

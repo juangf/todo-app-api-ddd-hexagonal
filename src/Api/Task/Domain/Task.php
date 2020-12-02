@@ -25,12 +25,12 @@ class Task {
         );
     }
 
-    public function getId()
+    public function getId(): string
     {
         return $this->id->value();
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->name->value();
     }
