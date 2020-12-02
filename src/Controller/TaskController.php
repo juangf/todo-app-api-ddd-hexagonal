@@ -17,7 +17,7 @@ class TaskController extends AbstractController
     {
         $response = $handler(new SearchAllTasksQuery());
 
-        $result = array_map(function($t)  {
+        $result = array_map(function($t) {
             return [
                 'id'   => $t->id(),
                 'name' => $t->name()
