@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 namespace App\Api\Task\Application\SearchAll;
-use App\Api\Task\Domain\TaskRepository;
 
 use App\Api\Task\Application\SearchAll\SearchAllTasksQuery;
 use App\Api\Task\Application\SearchAll\AllTasksSearcher;

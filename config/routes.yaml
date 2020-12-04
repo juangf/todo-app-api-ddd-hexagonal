@@ -1,3 +1,11 @@
-index:
+main:
     path: /
+    controller: App\Controller\MainController::main
+
+tasks:
+    path: /tasks
     controller: App\Controller\TaskController::searchAll
+
+task:
+    path: /tasks/{id}
+    controller: App\Controller\TaskController::findById
