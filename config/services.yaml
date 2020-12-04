@@ -29,6 +29,8 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # Tasks
     App\Api\Task\Domain\TaskRepository:
         class: 'App\Api\Task\Infrastructure\Persistence\MongoDbTaskRepository'
         arguments: ['%env(resolve:DATABASE_URL)%']
@@ -38,3 +40,7 @@ services:
 
     App\Api\Task\Application\SearchAll\SearchAllTasksQueryHandler:
         arguments: ['@App\Api\Task\Application\SearchAll\AllTasksSearcher']
+
+    # Responses
+    App\Api\Response\Application\BuildResponse\BuildResponseCommandHandler:
+        arguments: ['@App\Api\Response\Application\BuildResponse\ResponseBuilder']

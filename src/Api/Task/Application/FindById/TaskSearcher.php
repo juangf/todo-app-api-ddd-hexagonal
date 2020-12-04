@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Api\Task\Application\FindById;
 
-use App\Api\Task\Domain\Task;
 use App\Api\Task\Domain\TaskRepository;
 use App\Api\Task\Application\TaskResponse;
 use App\Api\Task\Domain\ValueObject\TaskId;

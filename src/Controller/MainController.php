@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
-class MainController extends AbstractController
+class MainController extends AbstractApiController
 {
-    public function main(): JsonResponse
+    public function main(): Response
     {
         $mainLinks = [
             [
@@ -18,8 +17,6 @@ class MainController extends AbstractController
             ]
         ];
 
-        return $this->json([
-            'links' => $mainLinks
-        ]);
+        return $this->buildResponse($mainLinks);
     }
 }
