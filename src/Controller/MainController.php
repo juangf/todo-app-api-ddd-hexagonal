@@ -11,9 +11,11 @@ class MainController extends AbstractApiController
     public function main(): Response
     {
         $mainLinks = [
-            [
-                'href' => $this->generateUrl('tasks'),
-                'rel' => 'tasks'
+            'links' => [
+                [
+                    'href' => $this->generateUrl('tasks'),
+                    'rel' => 'tasks'
+                ]
             ]
         ];
 

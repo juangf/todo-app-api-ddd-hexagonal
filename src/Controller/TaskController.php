@@ -24,9 +24,11 @@ class TaskController extends AbstractApiController
             return [
                 'id'   => $t->id(),
                 'name' => $t->name(),
-                'link' => [
-                    'href' => $this->generateUrl('task', ['id' => $t->id()]),
-                    'rel'  => 'task'
+                'links' => [
+                    [
+                        'href' => $this->generateUrl('task', ['id' => $t->id()]),
+                        'rel'  => 'self'
+                    ]
                 ]
             ];
         }, $response->tasks());
@@ -45,9 +47,11 @@ class TaskController extends AbstractApiController
         return $this->buildResponse([
             'id'    => $taskResponse->id(),
             'name'  => $taskResponse->name(),
-            'link' => [
-                'href' => $this->generateUrl('task', ['id' => $taskResponse->id()]),
-                'rel'  => 'self'
+            'links' => [
+                [
+                    'href' => $this->generateUrl('task', ['id' => $taskResponse->id()]),
+                    'rel'  => 'self'
+                ]
             ]
         ]);
     }
