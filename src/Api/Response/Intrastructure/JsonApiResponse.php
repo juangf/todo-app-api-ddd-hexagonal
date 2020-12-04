@@ -11,13 +11,13 @@ final class JsonApiResponse implements ApiResponse {
     private $headers;
     private $code;
 
-    function __construct(array $response)
+    function __construct(array $response, int $code = 200)
     {
         $this->response = $response;
         $this->headers = [
             'Content-Type' => 'application/json'
         ];
-        $this->code = 200;
+        $this->code = $code;
     }
 
     public function content(): string
