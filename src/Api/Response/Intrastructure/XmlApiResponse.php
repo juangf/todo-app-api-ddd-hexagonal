@@ -7,8 +7,9 @@ namespace App\Api\Response\Intrastructure;
 use App\Api\Response\Domain\FormattedApiResponse;
 use App\Api\Response\Domain\ApiResponse;
 use App\Api\Response\Domain\ApiResponseItem;
+use SimpleXMLElement;
 
-final class JsonApiResponse implements FormattedApiResponse {
+final class XmlApiResponse implements FormattedApiResponse {
     private $apiResponse;
     private $headers;
     private $code;
@@ -17,45 +18,46 @@ final class JsonApiResponse implements FormattedApiResponse {
     {
         $this->apiResponse = $apiResponse;
         $this->headers = [
-            'Content-Type' => 'application/json'
+            'Content-Type' => 'application/xml'
         ];
         $this->code = $code;
     }
 
-    private function prepareItem(ApiResponseItem $responseItem): array
+    private function prepareItem(SimpleXMLElement &$xml, ApiResponseItem $responseItem): void
     {
-        $result = [];
         $properties = $responseItem->getProperties();
+        $xmlNode = $xml->addChild($responseItem->getNodeName());
         foreach ($properties as $property) {
-            $result[$property->getName()] = $property->getValue();
+            $xmlNode->addChild($property->getName(), $property->getValue());
         }
         
         $links = $responseItem->getLinks();
+        if (!empty($links)) {
+            $linksNode = $xmlNode->addChild('links');
+        }
+         
         foreach ($links as $link) {
-            $result['links'][] = [
-                'url' => $link->getUrl(),
-                'rel' => $link->getRel()
-            ];
+            $linkChild = $linksNode->addChild('link');
+            $linkChild->addAttribute('url', $link->getUrl());
+            $linkChild->addAttribute('rel', $link->getRel());
         }
 
         $items = $responseItem->getItems();
         foreach ($items as $item) {
-            $result[] = $this->prepareItem($item);
+            $this->prepareItem($xmlNode, $item);
         }
-
-        return $result;
     }
 
     public function content(): string
     {
         $items = $this->apiResponse->getItems();
-        $result = [];
-
+        $xml = new SimpleXMLElement('<response/>');
+        
         foreach ($items as $item) {
-            $result[$item->getNodeName()] = $this->prepareItem($item);
+            $this->prepareItem($xml, $item);
         }
 
-        return json_encode($result);
+        return $xml->asXML();
     }
 
     public function headers(): array

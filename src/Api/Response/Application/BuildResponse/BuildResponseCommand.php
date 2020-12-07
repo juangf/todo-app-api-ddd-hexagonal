@@ -8,22 +8,22 @@ use App\Api\Response\Domain\ApiResponse;
 
 final class BuildResponseCommand
 {
-    private $data;
-    private $responseFormat;
+    private $apiResponse;
+    private $format;
 
-    function __construct(array $data, string $responseFormat = ApiResponse::JSON_RESPONSE)
+    function __construct(ApiResponse $apiResponse, string $format = 'json')
     {
-        $this->data = $data;
-        $this->responseFormat = $responseFormat;
+        $this->apiResponse = $apiResponse;
+        $this->format = $format;
     }
 
-    public function getData(): array
+    public function getApiReponse(): ApiResponse
     {
-        return $this->data;
+        return $this->apiResponse;
     }
 
-    public function getResponseFormat(): string
+    public function getFormat(): string
     {
-        return $this->responseFormat;
+        return $this->format;
     }
 }

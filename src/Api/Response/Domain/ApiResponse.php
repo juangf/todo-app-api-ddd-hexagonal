@@ -4,10 +4,23 @@ declare(strict_types=1);
 
 namespace App\Api\Response\Domain;
 
-interface ApiResponse {
-    public const JSON_RESPONSE = 'json';
+use App\Api\Response\Domain\ValueObject\NodeName;
 
-    public function content(): string;
-    public function headers(): array;
-    public function code(): int;
+class ApiResponse {
+    private $items;
+
+    function __construct(array $items = [])
+    {
+        $this->items = $items;
+    }
+
+    public function addItem(ApiResponseItem $item): void
+    {
+        $this->items[] = $item;
+    }
+
+    public function getItems(): array
+    {
+        return $this->items;
+    }
 }
